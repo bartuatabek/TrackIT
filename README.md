@@ -1,6 +1,7 @@
 # Project-Tracker
 
 CS 353 Database Systems Course Project
+
 **Instructor:**  Özgür Ulusoy
 
 **Section/ Group:** Section 3 - Group 30 
