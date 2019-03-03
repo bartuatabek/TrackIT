@@ -896,6 +896,9 @@ hr {
 }
 
 #pricing .table {
+  position: relative;
+  left: 50%;    
+    
   margin-top: 15px;
   padding: 30px;
   border-radius: 4px;
@@ -909,7 +912,7 @@ hr {
 }
 
 #pricing .table .icon-box {
-  position: relative;
+  position: relative;    
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -1025,7 +1028,6 @@ hr {
 }
 
 .testimonial-item .img-thumb img {
-  border-radius: 50%;
   display: inline-block;
   width: inherit;
   padding: 7px;
