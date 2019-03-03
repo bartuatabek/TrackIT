@@ -28,7 +28,7 @@ All questions, bug reports and feature requests are handled via the [GitHub issu
 
 ## Copyright and License
 
-Copyright © 2019 'InsertCooLGroupName'. All rights reserved.
+Copyright © 2019 'Track:tm:IT'. All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this work except in
 compliance with the License. You may obtain a copy of the License in the LICENSE file, or at:
