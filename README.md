@@ -1,4 +1,4 @@
-# Project-Tracker
+# [Project-Tracker](http://track-it.cf/)
 
 CS 353 Database Systems Course Project
 
@@ -14,6 +14,7 @@ CS 353 Database Systems Course Project
 
 ### Description
 Project Tracker is a system to track software development project. There will be boards, lists, cards etc. There will be two types of users: privileged and standard. Privileged users will have access to more features, such as creating & deleting boards, adding & removing other users to cards etc. Users can be assigned to different teams. Teams will have their own boards.
+
 
 ## Reports
  - [Proposal Report](https://github.com/utgoer/Katamino/blob/master/doc/2F.Analysis.Iteration1.2018.10.21.pdf)
