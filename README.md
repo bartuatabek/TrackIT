@@ -13,7 +13,7 @@ CS 353 Database Systems Course Project
 -   [Deniz Yüksel](https://github.com/denizyuksel)
 
 ### Description
-Project Tracker is a system to track software development project. There will be boards, lists, cards etc. There will be two types of users: privileged and standard. Privileged users will have access to more features, such as creating & deleting boards, adding & removing other users to cards etc. Users can be assigned to different teams. Teams will have their own boards.
+Project Tracker is a system to track software development project. There will be boards, lists, cards etc. There will be two types of users: privileged and standard. Privileged users will have access to more features. Teams will have their own boards.
 
 
 ## Reports
