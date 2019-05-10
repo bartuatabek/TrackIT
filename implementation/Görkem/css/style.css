@@ -1,0 +1,11 @@
+body { 
+    padding-top: 55px; 
+}
+
+.img {
+  margin: 32px;
+  float: left;
+  max-width: 3em;
+  max-height: 3em;
+  border-radius: 100%;
+}
