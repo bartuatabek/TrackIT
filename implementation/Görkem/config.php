@@ -8,5 +8,6 @@
     {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
-    mysqli_query($db,'SET CHARACTER SET utf8' );
+    mysqli_query($db,"SET NAMES 'utf8';" );
+    mysqli_query($db,"CHARSET 'utf8';" );
 ?>

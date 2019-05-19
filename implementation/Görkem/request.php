@@ -4,12 +4,16 @@ include("config.php");
 session_start();
 $_SESSION['project_id'] = 1; //this is mock id
 $_SESSION['user_id'] = 1; //this is mock id
+$_SESSION['privileged'] = 1; //this is mock id
 $project_id = $_SESSION['project_id'];
 $func_name  = mysqli_real_escape_string($db, $_POST['func_name'] );
 
 
 switch($func_name)
 {
+    case 'fetch_privileged':
+        echo $_SESSION['privileged'];
+        break;
     case 'set_session':
         set_session($_POST['key'],$_POST['value']);
         break;
@@ -152,29 +156,6 @@ function fetch_team($db,$project_id)
     }
     echo json_encode($dbdata);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function delete_userFromTeam($db,$user_id,$team_id)
 {
     $sql=mysqli_query
@@ -185,8 +166,6 @@ function delete_userFromTeam($db,$user_id,$team_id)
 		"
         );
 }
-
-
 function delete_userFromProject($db,$user_id,$project_id)
 {
 
@@ -208,15 +187,6 @@ function delete_userFromProject($db,$user_id,$project_id)
 		"
         );
 }
-
-
-
-
-
-
-
-
-
 function fetch_userByName($db,$name)
 {
     $dbdata = array();
@@ -236,16 +206,6 @@ function fetch_userByName($db,$name)
     }
     echo json_encode($dbdata);
 }
-
-
-
-
-
-
-
-
-
-
 
 function fetch_pparticipants($db,  $project_id)
 {

@@ -16,20 +16,24 @@
 
     <body>
         <header class="fixed-top">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class=" shadow-sm navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">Track-IT</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-item nav-link active" href="#">Home</a>
-                        <a class="nav-item nav-link" href="#">Features</a>
-                        <a class="nav-item nav-link" href="#">Pricing</a>
+                    <div class="  navbar-nav">
+                        <a class="nav-item nav-link active" href="#">Projects</a>
+                        <a class="nav-item nav-link" href="#">Project Information</a>
+                        <a class="nav-item nav-link" href="#">Issue</a>
+                        <a class="nav-item nav-link" href="#">Release</a>
+                        <a class="nav-item nav-link" href="#">Users</a>
+                        <a class="nav-item nav-link order-3" href="#">Logout</a>
                     </div>
                 </div>
             </nav>
         </header>
+
 
 
         <div class="container mt-3">
@@ -48,16 +52,18 @@
 
 
                     </div>
-                    <h4 class="mt-4">Users</h4>
-                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                    <div class="container">
-                        <div id="user_cards" class="row">
+                    <div id="user_showcase">
+                        <h4 class="mt-4">Users</h4>
+                        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                        <div class="container">
+                            <div id="user_cards" class="row">
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class ="col-md-8 col-sm-12 mt-3">
 
-                    <h2>Team    <i class="fas fa-plus-circle" data-toggle="collapse" data-target="#createTeam"></i></h2>
+                    <h2>Team    <i id="teamAddCircle" class="fas fa-plus-circle" data-toggle="collapse" data-target="#createTeam"></i></h2>
                     <div id="createTeam" class="collapse mb-3">
                         <form id="teamform">
                             <div class="form-group mb-0">
