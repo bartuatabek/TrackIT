@@ -17,8 +17,8 @@ function fetchTeam(){
                         '<a ondblclick="delete_userFromTeam('+element.user_id+','+team_element.team_id+')" style="font-size:13px;">'+element.name +'<span style="color: darkgray"> #'+element.user_id+ '</span> </a>'+
                         '<a style="font-size:13px;">|</a>';
                 });
-                
-                
+
+
 
                 document.getElementById("teams").innerHTML+= 
                     '<p  class="font-weight-bold" style="font-size:20px; display: inline;" data-toggle="collapse" data-target="#teamcol'+team_element.team_id+'">'+team_element.name+ '<i class="fas fa-caret-down"></i></p> <i  onclick= "setSessionRE(\'team_id\','+team_element.team_id+',\'/board.html\')" class="far fa-arrow-alt-circle-right"></i><span style="display: block;"></span>'+
@@ -118,6 +118,66 @@ function addUser(element,team_id){
     });
 }
 
+
+//Board page
+function fetch_board(){
+    $.post( "request.php", { func_name: "fetch_board"})
+        .done(function( data ) {
+        let dataparsed = JSON.parse(data);
+
+        document.getElementById("board_cards").innerHTML="";
+        dataparsed.forEach(function(element) {
+            document.getElementById("board_cards").innerHTML= 
+                '<div class=" card ml-3" style="height: 10rem; width: 18rem;">'+
+                '<div class="p-3">'+
+                '<h6 onclick="setSessionRE(\'board_id\','+element.board_id+',\'/board.html\')">'+element.name+'</h6>'+///////////////////////////////////////CHANGE /BOARD.HTML TO NEXT PAGE SILININCE SESSION BOARDID 0LANMIYOR.
+                '<hr class="mt-0 mb-0">'+
+                '<p>'+element.description+'</p>'+
+                '<i onclick="delete_board('+element.board_id+')" class="far fa-trash-alt m-2" style="position:absolute;bottom:0;right:0;"></i>'+
+                '</div>'+
+                '</div>'+document.getElementById("board_cards").innerHTML;
+        });
+        document.getElementById("board_cards").innerHTML+= '<div id="add_boardField">'+
+            '<div  class="card ml-3" style="height: 10rem; width: 18rem; display: flex;justify-content: center;align-items: center;">'+
+            '<div class="p-3 text-center" >'+
+
+            '<i id="add_boardel" class="fas fa-plus-circle" style="font-size: 60px; color: darkgray"></i>'+
+            '</div>'+
+
+            '</div>'+
+            '</div>';
+        $( "#add_boardel" ).click(function() {
+            document.getElementById("add_boardField").innerHTML= 
+                '<div class="card ml-3" style="height: 10rem; width: 18rem;">'+
+                '<form id="boardForm"><div class="p-3">'+
+                '<input id="boardName" type="text" class="form-control" placeholder="BoardName" aria-label="BoardName">'+
+                '<hr class="mt-0 mb-0">'+
+                '<textarea id="boardDescription" type="text" class="form-control" placeholder="BoardDescription" aria-label="BoardDescription" rows="2"></textarea>'+
+                '<i onclick="add_board()" class="fas fa-check-square m-2" style="position:absolute;bottom:0;right:0;"></i>'+
+                '</div></form>'+
+                '</div>';
+        });
+    });
+}
+
+
+function delete_board(board_id){
+    $.post( "request.php", { func_name: "delete_board", board_id: board_id})
+        .done(function( data ) {
+        fetch_board();
+    });
+}
+
+
+function add_board(){
+    
+    let name = document.getElementById("boardName").value;
+    let description = document.getElementById("boardDescription").value;
+    $.post( "request.php", { func_name: "add_board", name: name, description: description})
+        .done(function( data ) {
+        fetch_board();
+    });
+}
 $(document).ready(function(){
 
     if(window.location.pathname == "/index.html"||window.location.pathname =="/"){  ////////////////////CHANGE
@@ -185,5 +245,8 @@ $(document).ready(function(){
             });
 
         });
+    }else if(window.location.pathname == "/board.html"){
+        fetch_board();
+
     }
 });

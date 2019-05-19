@@ -13,6 +13,7 @@ switch($func_name)
     case 'set_session':
         set_session($_POST['key'],$_POST['value']);
         break;
+        //team page
     case 'add_team'	:
         add_team($db, $_POST['team_name'], $_POST['team_description'], $project_id);
         break;
@@ -49,6 +50,18 @@ switch($func_name)
     case 'delete_userFromProject':
         delete_userFromProject($db,$_POST['user_id'],$project_id);
         break;
+
+        //board page
+    case 'fetch_board':
+        fetch_board($db,$_SESSION['team_id']);
+        break;
+    case 'delete_board':
+        delete_board($db,$_POST['board_id']);
+        break;
+    case 'add_board':
+        add_board($db,$_POST['name'],$_POST['description'],$_SESSION['team_id'],$_SESSION['user_id']);
+        break;
+
 
 
     default:
@@ -327,4 +340,49 @@ function fetch_project($db,  $project_id)
     }
     echo json_encode($dbdata);
 }
+
+
+//board page
+function fetch_board($db,  $team_id)
+{
+    $dbdata = array();
+
+    $sql=mysqli_query
+        ($db,
+         "
+			SELECT 	board_id, description, name
+			FROM 	Board 
+			WHERE 	team_id	=$team_id;
+		"
+        );
+
+    while($row=mysqli_fetch_assoc($sql))
+    {
+        $dbdata[]=$row;
+    }
+    echo json_encode($dbdata);
+}
+function delete_board($db,  $board_id)
+{
+    $sql=mysqli_query
+        ($db,
+         "
+			DELETE FROM Board
+			WHERE board_id='$board_id';
+		"
+        );
+}
+
+function add_board($db,$name,$description, $team_id, $user_id)
+{
+    $sql=mysqli_query
+        ($db,
+         "
+            INSERT INTO Board (name, description, create_date, team_id, user_id) 
+            VALUES ('$name', '$description', CURDATE(),$team_id,$user_id);
+		"
+        );
+}
+
+
 ?>
