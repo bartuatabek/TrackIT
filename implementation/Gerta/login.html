@@ -1,7 +1,8 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="..\implementation\css\login.css">
+  <link rel="shortcut icon" type="image/png" href="./images/logo.png"/>
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
@@ -12,10 +13,10 @@
   <div class="mainBox">
     <!--img class="logo" src="logo.png" alt="trackIt logo"-->
     <p class="login" align="left">Login</p>
-    <form class="form1">
-      <input class="usrname " type="text" align="center" placeholder="Username">
-      <input class="passw" type="password" align="center" placeholder="Password">
-      <p class="signUpLink" align="right">Don't have an account?<a href="signup.html"> Sign Up</p>
+    <form class="form1"  action="../implementation/php/login.php" method="GET">
+      <input class="usrname " name="username" type="text" align="center" placeholder="Username">
+      <input class="passw" name="password" type="password" align="center" placeholder="Password">
+      <p class="signUpLink" align="right">Don't have an account?<a href="..\implementation\signup.html"> Sign Up</p>
       <a class="submit" align="center">Sign in</a>
 
     </div>

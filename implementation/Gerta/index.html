@@ -1,7 +1,8 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="indx.css">
+  <link rel="stylesheet" href="..\implementation\css\indx.css">
+  <link rel="shortcut icon" type="image/png" href="./images/logo.png"/>
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
@@ -11,15 +12,16 @@
 <body>
   <div class="mainBox">
     <!--p class="login" align="left">Login</p-->
-    <img class="logo" src="logo.png" alt="trackIt logo">
+    <img class="logo" src="..\implementation\images\logo.png" alt="trackIt logo">
 
     <div class="btn-group">
-      <a href="login.html"><button>Login</button></a>
-      <a href="signup.html"><button>Sign Up</button></a>
+      <a href="..\implementation\login.html"><button>Login</button></a>
+      <a href="..\implementation\signup.html"><button>Sign Up</button></a>
     </div>
-    <div class="footer">&copy; 2019 Track&trade;IT. All rights reserved.</div>
-    <!--a href="/" class="back">blabla</a>
-<img class="back" src="background.svg" alt="lalala"-->
+    <div class="footer" style="z-index: 1">&copy; 2019 Track&trade;IT. All rights reserved.</div>
+    <img class="back" style="z-index: -1" src="../implementation/images/background.svg" alt="lalala">
+  </div>
+
 </body>
 
 </html>
