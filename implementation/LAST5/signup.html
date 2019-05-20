@@ -1,0 +1,55 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="css\signup.css">
+  <link rel="shortcut icon" type="image/png" href="images/logo.png"/>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <script src="./js/first3.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <title>Sign Up</title>
+</head>
+
+<body>
+<div class="container">
+  <div class="bigdiv">
+  <div class="left-container">
+    <!--img class="logo" src="logo.png" alt="trackIt logo"-->
+    <p class="signup" align="left">Sign Up</p>
+    <form class="info-form" action="php/signup.php" method="POST">
+      <input id="usernameField" class="usrname " name="username" type="text" align="left" placeholder="Username" required>
+      <input id="nameField" class="name" name="name" type="text" align="left" placeholder="Name" required>
+      <input id="emailField" class="email " name="email" type="text" align="left" placeholder="Email" required>
+      <input id="passwordField" class="passw" name="password" type="password" align="left" placeholder="Password" required>
+      <input id="confirmPasswordField" class="confirmpass" name="confirmpass" type="password" align="left" placeholder="Confirm Password" required>
+      <a onclick="add_usersin()" id="loginFormSubmit" class="submit" align="center" name="signup" value="signup">Sign Up</a>
+      </form>
+    </div>
+
+  <div class="right-container">
+      <!--img class="logo" src="logo.png" alt="trackIt logo"-->
+      <p class="theme-utype" align="left">Themes</p>
+      <div class="btn-group">
+        <button><img src="images\content.png"></button>
+        <button><img src="images\theme.png"></button>
+        <button><img src="images\web-design.png"></button>
+      </div>
+      <br>
+      <div class="utypes">
+        <p class="theme-utype" align="left">User Type</p>
+        <form>
+         <label class="radio-inline" name="user_type" value="standard">
+           <input id="stdradio" type="radio" name="optradio" checked>Standard User
+         </label>
+         <label class="radio-inline" name="user_type" value="privileged">
+           <input id="privradio" type="radio" name="optradio">Privileged User
+         </label>
+       </form>
+     </div>
+  </div>
+</div>
+</div>
+</body>
+
+</html>
