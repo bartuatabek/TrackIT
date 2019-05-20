@@ -76,6 +76,11 @@ p {
 	cursor: grab;
 }
 
+#hidden {
+	opacity: 0.0;
+	cursor: default !important;
+}
+
 .highlight {
 	background-color: rgba(0,0,0,0.2);
 	display: inline-block;
@@ -139,15 +144,4 @@ li > #cards > li:hover {
   top: 12px;
 	cursor: pointer !important;
 	color : #244234;
-}
-
-.iw-modalBox {
-	padding:25px;
-	border:1px solid #fff;
-	border-radius: 25px;
-	background: white;
-}
-
-.iw-modalOverlay {
-    background: rgba(0,0,0,0.4);
 }

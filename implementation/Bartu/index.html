@@ -53,7 +53,9 @@
 		
 		<div class="Workflow-container">
 				<ul class="ul-parent" id="contains_workspaces">	
-				<li class="li-parent before-list create_workspace" id="for_prepend_purpose"> <!--Add Workflows-->
+			
+				<li class="li-parent before-list create_workspace" id="for_prepend_purpose"> 
+					<!--Add Workflows-->
 					<p></p><center>
 					<input type="text" placeholder="Add a list" id="add_workflow" class="create_workspace_textElement"/>
 					<i class="fas fa-plus-circle"></i>
@@ -63,13 +65,56 @@
 		</div>
 
 		<script type="text/javascript" src="js/main.js"></script>
+		
+		<!--Create Modal -->
+		<div class="modal fade" id="createCardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
 
-		<div class="modalBox"> 
-			<button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-			<p>Some text in the modal.</p>
-			<div class="modalFooter">
-				<p>Some text in the modal.</p>
+						<h5 class="modal-title" id="exampleModalLongTitle">Add Card</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+							<form id="createForm">
+									 <input name="card_name" type="text" class="form-control" id="cname" placeholder="Card name">
+									<textarea name="card_description" type="text" class="form-control" id="cdescription" placeholder="Card description"></textarea>
+								</form>
+
+					</div>
+					<div class="modal-footer">
+						<button id="cadd" type="submit" class="btn btn-primary">Add</button>
+					</div>
+				</div>
+			</div>
+		</div>
+        
+		<!--Show Modal -->
+		<div class="modal fade" id="showCardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="cpastetitle"></h5>
+						<span class="badge badge-pill badge-primary">Primary</span>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<h6 data-toggle="collapse" data-target="#pparticipants">Assigned Users <i class="fas fa-caret-down"></i></h6>
+						<div id="pparticipants" class="collapse overflow-auto" style="height: auto;max-height: 100px;overflow-x: hidden;">
+						</div>
+						<p id="cpastedescription"><b>Description:</b> </p>
+					</div>
+					<div class="modal-footer">
+							<input name="ass_user" type="text" class="form-control" id="assUserText" placeholder="User ID">
+							<button id="assuserbut" type="submit" class="btn btn-primary">Assign User</button>
+							<button id="archivebut" type="submit" class="btn btn-warning">Archive</button>
+							<button id="cdelete" type="submit" class="btn btn-danger">Delete</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>
