@@ -1,16 +1,22 @@
-.issue-container{
+.issue-container {
   height: 500px;
   width: inherit;
   margin-top: 5%;
-
 }
 
 .issue-card {
-    border: 3px round;
-    border-radius: 20px;
-    border-width: thick;
+  border: 3px round;
+  border-radius: 20px;
+  border-width: thick;
 }
 
 .card {
-  display:inline-block;
+  display: inline-block;
+}
+
+.card-columns {
+  display: inline-block;
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
 }

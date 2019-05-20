@@ -1,38 +1,71 @@
-window.onload = function () {
-    var arr = document.getElementsByClassName("marker");
-    for (let i = 0; i < arr.length; i++) {
-        arr[i].onclick = function () {
-            for (let j = 0; j < arr.length; j++) {
-                arr[j].style.background = "#00000000";
-            }
-            arr[i].style.background = "red";
+var timeLine = document.getElementById("timeline-wrap");
 
-            showReleaseOnClick();
 
-        };
-    };
+
+function createReleaseCard() {
+  var submitBtn = document.getElementById("submitButton");
+
+  var releaseName = document.getElementById("release-name").value;
+  var releaseURL = document.getElementById("release-url").value;
+  var releaseDescription = $('textarea#release-description').val();
+  var releaseComments = $('textarea#release-comments').val();
+  var versionNumber = document.getElementById("version-number").value;
+
+  var curday = function(sp) {
+    today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //As January is 0.
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+    return (mm + sp + dd + sp + yyyy);
+  };
+  var dateFormatted = curday('-');
+
+
+  var releaseCard =
+    '<div class="card release-card">' +
+    '<div class="card-header" id="clickableHeader" data-toggle="modal"' +
+    'data-target="#release-info-modal"' +
+    'onclick="inspectReleaseCard()">' +  
+    '<div class="row">' +
+    '  <div class="col">' +
+    '<h5 class="card-title" id="release-title">' + releaseName + '</h5>' +
+    '<p class="card-text" class="text-muted">' + dateFormatted + '</p>' +
+    '</div>' +
+    '<div class="float-right">' +
+    '<p class="card-text version-text" id="version-number">' + versionNumber + '</p>' +
+    '</div>' +
+    '</div>' +
+    '<i class="fa fa-circle"></i>' +
+    '</div>' +
+    '<div class="card-block">' +
+    '<p class="card-text release-description" id="release-description">' + releaseDescription + '</p>' +
+
+    '<form>' +
+    '<div class="form-group">' +
+    '<label for="release-comment" class="col-form-label">Add Comment:</label>' +
+    '  <textarea class="form-control" id="release-comment">' + releaseComments + '</textarea>' +
+    '</div>' +
+    '</form>' +
+    '<div class="d-flex justify-content-around">' +
+    '<button type="button resolve-btn" class="btn btn-danger">Delete</button>' +
+    '<button type="button resolve-btn" class="btn btn-success">Save</button>' +
+    '</div>' +
+
+    '</div>' +
+    '</div>' +
+    '</div>' +
+    '</div>';
+
+  $(document).ready(function() {
+    $("#card-columns").append(releaseCard);
+  });
 }
 
-function showReleaseOnClick(){
-  var releaseCard =
-  '<div class="card release-card" style="width: 16rem;">'+
-    '<div class="card-body">'+
-      '<h5 class="card-title" name="release-name">Release Name <button type="button" class="close" aria-label="Close">'+
-          '<span aria-hidden="true">&times;</span>'+
-        '</button></h5>'+
-      '<p class="card-text" name="release-text">Lorem ipsum falan filan.</p>'+
-      '<form>'+
-        '<div class="form-group">'+
-          '<label for="exampleFormControlTextarea1"></label>'+
-          '<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>'+
-        '</div>'+
-      '</form>'+
-      '<input class="btn btn-secondary" type="button" value="Edit">'+
-      '<input class="btn btn-danger" type="submit" value="Delete">'+
-      '<input class="btn btn-success" type="reset" value="Save">'+
-    '</div>'+
-  '</div>';
+function inspectReleaseCard(){
+    var releaseCard = document.getElementById()
 
-  $(document).ready(function () {
-  $("#timeline").append(releaseCard);});
+
 }

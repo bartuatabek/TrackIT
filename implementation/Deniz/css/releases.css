@@ -2,7 +2,7 @@ body {
   /*height: 100%;*/
 }
 .profile-container{
-  
+
 }
 
 .release-container{
@@ -14,4 +14,10 @@ body {
 
 .card {
   display:inline-block;
+}
+
+.release-card {
+    border: 3px round;
+    border-radius: 20px;
+    border-width: thick;
 }
