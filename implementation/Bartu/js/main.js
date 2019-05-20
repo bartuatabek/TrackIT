@@ -70,11 +70,11 @@ var binder = function() {
 function init(workflowName) {
     if (workflowName != '') {
         //for adding a workflow
-        basic_workflow = '<li class="li-parent no_padding_bottom"><div class = "handle"><div class="name-of-workflow">' + workflowName + '</div><div class="delete-workspace" id="' + list_id + '"><span class="glyphicon glyphicon-trash">x</span></div></div>';
+        basic_workflow = '<li class="li-parent no_padding_bottom"><div class = "handle"><div class="name-of-workflow">' + workflowName + '</div><div class="delete-workspace"><span class="glyphicon glyphicon-trash">x</span></div></div>';
         basic_workflow += '<ul id="cards">';
-        basic_workflow += '<li class="cancel_drag" id="hidden" value="0"></li><li class="cancel_drag"><div class="add-a-card">Add a card</div></li>';
+				basic_workflow += '<li onclick="addCard(' + 1 + ')" class="cancel_drag"><div class="add-a-card">Add a card</div></li>';
         basic_workflow += '</ul></li>';
-			
+				
         //set input value to null
         $('#add_workflow').val('');
         binder();
@@ -95,6 +95,9 @@ $('#add_workflow').bind('keydown', function(e) {
             $(basic_workflow).insertBefore('#for_prepend_purpose');
             init();
 						$.post("request.php", {func_name: "add_lists", title: list_title})
+						.done(function( data ) {
+							location.reload(true);
+						});
         }
 
         $('.Workflow-container').animate({
@@ -217,7 +220,9 @@ function fetchBoard() {
 							
 							workflow += '<li onclick="showCard(' + card_id + ')"><i class="fas fa-align-left"></i>' + card_title + '</li>';
 						});
-						workflow += '<li onclick="addCard(' + list_id + ')" class="cancel_drag"><div class="add-a-card">Add a card</div></li>';
+						if (list_name != "Archive") {
+							workflow += '<li onclick="addCard(' + list_id + ')" class="cancel_drag"><div class="add-a-card">Add a card</div></li>';
+						}
 						workflow +='</ul></li>';
 						binder();
 						$(workflow).insertBefore('#for_prepend_purpose');

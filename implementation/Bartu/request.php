@@ -77,7 +77,7 @@ function add_privilage($connection, $user_id) {
 
 function fetch_lists($connection, $board_id) {
 	$dbdata = array();
-	$sql = "SELECT list_id, title FROM Lists WHERE board_id='$board_id'";
+	$sql = "SELECT list_id, title FROM Lists WHERE board_id='$board_id' ORDER BY list_id ASC";
 	$result = mysqli_query($connection, $sql);
 	
 	while($row=mysqli_fetch_assoc($result)) {
