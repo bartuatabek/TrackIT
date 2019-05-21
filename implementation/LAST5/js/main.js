@@ -240,6 +240,50 @@ $.post( "request.php", { func_name: "fetch_project"})
 }
 
 
+
+
+function search(event){
+        
+    $.post( "request.php", { func_name: "search_user", name:event.value})
+                .done(function( data ) {
+
+                let dataparsed = JSON.parse(data);
+                var maxCard = 6;
+                document.getElementById("user_cards").innerHTML = "";
+                dataparsed.forEach(function(element) {
+                    if(document.getElementById("user_cards") == null){
+                        return;
+                    }
+                    document.getElementById("user_cards").innerHTML+= 
+                        '<div class ="col-6 mt-3">'+
+                        '<div class="shadow-sm card">'+
+                        '<div class="text-center">'+
+                        '<img class="rounded-circle align-center mt-2" width="40" height="40" src="./images/default.jpg" alt="Card image cap">'+
+                        '<p class= "mt-1 mb-0" style="font-size:11px;"> #'+element.user_id+'</p>'+
+                        '<div class="pt-1 pr-2 pl-2 pb-1">'+
+                        '<p class="mb-0" style="font-size:14px;">'+element.name+'</p>'+
+                        '</div>'+
+                        '<button onclick="inviteUserToProject('+element.user_id+',this)" type="button" class="btn btn-primary pb-0 pt-0 mb-1">Invite</button>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>';
+                    maxCard = maxCard - 1;
+                    if(maxCard == 0){
+                        return;
+                    }
+                });
+
+            });
+    
+    
+    
+    
+    
+    
+}
+
+
+
 $(document).ready(function(){
 
 

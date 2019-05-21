@@ -55,6 +55,11 @@ switch($func_name)
         case 'update_project':
         update_project($db,$_POST['name'],$_POST['description'],$_POST['status'],$_POST['start_date'],$_POST['end_date'], $project_id);
         break;
+        
+        case 'search_user':
+        search_user($db,$_POST['name']);
+        break;
+        
 
         //board page
     case 'fetch_board':
@@ -72,6 +77,26 @@ switch($func_name)
 }
 
 
+function search_user($db,$name)
+{
+    $dbdata = array();
+
+    $sql=mysqli_query
+        ($db,
+         "
+			SELECT * FROM User WHERE name LIKE '$name%';
+		"
+        );
+
+    while($row=mysqli_fetch_assoc($sql))
+    {
+        $dbdata[]=$row;
+    }
+    echo json_encode($dbdata);
+}
+
+
+
 
 
 
@@ -80,6 +105,8 @@ function set_session($key, $value)
 {
     $_SESSION[$key] = $value;
 }
+
+
 
 function add_team($db,$name, $description, $project_id)
 {
