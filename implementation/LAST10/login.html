@@ -1,0 +1,31 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="css\login.css">
+  <link rel="shortcut icon" type="image/png" href="images/logo.png"/>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <script src="./js/first3.js"></script>
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+
+  <title>Login</title>
+</head>
+
+<body>
+  <div class="mainBox">
+    <!--img class="logo" src="logo.png" alt="trackIt logo"-->
+    <p class="login" align="left">Login</p>
+    <form class="form1"  action="php/login.php" method="GET">
+      <input id="userText" class="usrname " name="username" type="text" align="center" placeholder="Username">
+      <input id="passtext" class="passw" name="password" type="password" align="center" placeholder="Password">
+      <p class="signUpLink" align="right">Don't have an account<a href="signup.html"> Sign Up</a></p>
+        <p id="errorField"></p>
+      <a onclick="fetch_userlog()" id="subButton" class="submit" align="center">Sign in</a>
+    </form>
+    </div>
+
+</body>
+
+</html>
