@@ -1,9 +1,9 @@
 //set body overflow hidden;
 $(".Workflow-container").css("overflow-y", "hidden")
 
+var username;
 var Workflow_config = {};
 Workflow_config.height = ($(document).height() - 30);
-
 
 //fix the height of the workflow container
 $('.Workflow-container').height(Workflow_config.height);
@@ -107,7 +107,17 @@ $('#add_workflow').bind('keydown', function(e) {
 });
 
 $(document).ready(function() {
-	fetchBoard();
+	$.post("mrequest.php", {func_name: "user_cred"})
+		.done(function(data) {
+			let dataparsed = JSON.parse(data);
+			username = dataparsed;
+			document.getElementById("username").innerHTML = dataparsed;
+			fetchBoard();
+		});
+
+	$('#comment-content').click(function () {
+        $('#comment-content').attr('readonly', false);
+    });
 });
 
 function addCard(list_id) {
@@ -135,7 +145,7 @@ function showCard(card_id) {
         .done(function( data ) {
         let dataparsed = JSON.parse(data);
         document.getElementById("cpastetitle").innerHTML = dataparsed[0].title;
-        document.getElementById("cpastedescription").innerHTML += dataparsed[0].description;
+        document.getElementById("cpastedescription").innerHTML = dataparsed[0].description;
         onClickStr = "assign_user('" + card_id + "')";
     		document.getElementById('assuserbut').setAttribute( "onClick", onClickStr );
         
@@ -146,6 +156,17 @@ function showCard(card_id) {
         document.getElementById('cdelete').setAttribute( "onClick", onClickStr );
         fetch_assignedusers(card_id);
         $('#showCardModal').modal();
+			
+					$('#comment-content').keypress(function (e) {
+					if (e.which == 13) {
+						var commandText = $('#comment-content').val();
+						console.log("enter");
+						$('#comment-content').attr('readonly', true);
+						addComment(username, commandText, card_id);
+						$('#comment-content').val("");
+						return false;
+					}
+				});
     });
 }
 
@@ -169,14 +190,14 @@ function assign_user(card_id) {
     var user_id = document.getElementById("assUserText").value;
     $.post( "mrequest.php", { func_name: "assign_user", card_id:card_id, user_id:user_id})
         .done(function( data ) {
-        
+        	showCard(card_id);
     });
 }
 
+// TODO
 function archive_card(card_id) {
 	$.post("mrequest.php", {func_name: "is_archived", card_id: card_id})
 		.done(function(data) {
-			console.log("b");
 			location.reload(true);
 		});
 }
@@ -194,40 +215,86 @@ function fetchBoard() {
 	// check archive
 	$.post("mrequest.php", {func_name: "create_archive"})
 		.done(function(data) {
-        // get lists
-	$.post("mrequest.php", {func_name: "fetch_lists"})
-		.done(function(lists) {
-			let dataparsed = JSON.parse(lists);
-			dataparsed.forEach(function(element) {
-				  var list_id = element.list_id;
-					var list_name = element.title;
-					var workflow;
-					if (list_name == "Archive") {
-						workflow = '<li class="li-parent no_padding_bottom" id="archive"><div class="handle"><div class="name-of-workflow">' + list_name + '</div></div><ul id="cards" class="ui-sortable"><li class="cancel_drag" id="hidden" value="' + list_id + '"></li>';
-					} else {
-						workflow = '<li class="li-parent no_padding_bottom"><div class="handle"><div class="name-of-workflow">' + list_name + '</div><div class="delete-workspace" id="' + list_id + '"><span class="glyphicon glyphicon-trash">x</span></div></div><ul id="cards" class="ui-sortable"><li class="cancel_drag" id="hidden" value="' + list_id + '"></li>';
-					}
-					
-					// fetch cards
-					$.post("mrequest.php", {func_name: "fetch_cards", list_id: list_id})
-					.done(function(cards) {
-						let dataparsed = JSON.parse(cards);
-						dataparsed.forEach(function(element) {
-							var card_id = element.card_id;
-							var card_title = element.title;
-							
-							workflow += '<li onclick="showCard(' + card_id + ')"><i class="fas fa-align-left"></i>' + card_title + '</li>';
-						});
-						if (list_name != "Archive") {
-							workflow += '<li onclick="addCard(' + list_id + ')" class="cancel_drag"><div class="add-a-card">Add a card</div></li>';
-						}
-						workflow +='</ul></li>';
-						binder();
-						$(workflow).insertBefore('#for_prepend_purpose');
+      // get lists
+			$.post("mrequest.php", {func_name: "fetch_lists"})
+				.done(function(lists) {
+					let dataparsed = JSON.parse(lists);
+					dataparsed.forEach(function(element) {
+							var list_id = element.list_id;
+							var list_name = element.title;
+							var workflow;
+							if (list_name == "Archive") {
+								workflow = '<li class="li-parent no_padding_bottom" id="archive"><div class="handle"><div class="name-of-workflow">' + list_name + '</div></div><ul id="cards" class="ui-sortable"><li class="cancel_drag" id="hidden" value="' + list_id + '"></li>';
+							} else {
+								workflow = '<li class="li-parent no_padding_bottom"><div class="handle"><div class="name-of-workflow">' + list_name + '</div><div class="delete-workspace" id="' + list_id + '"><span class="glyphicon glyphicon-trash">x</span></div></div><ul id="cards" class="ui-sortable"><li class="cancel_drag" id="hidden" value="' + list_id + '"></li>';
+							}
+
+							// fetch cards
+							$.post("mrequest.php", {func_name: "fetch_cards", list_id: list_id})
+							.done(function(cards) {
+									let dataparsed = JSON.parse(cards);
+									dataparsed.forEach(function(element) {
+										var card_id = element.card_id;
+										var card_title = element.title;
+
+										workflow += '<li onclick="showCard(' + card_id + ')"><i class="fas fa-align-left"></i>' + card_title + '</li>';
+									});
+									if (list_name != "Archive") {
+										workflow += '<li onclick="addCard(' + list_id + ')" class="cancel_drag"><div class="add-a-card">Add a card</div></li>';
+									}
+									workflow +='</ul></li>';
+									binder();
+									$(workflow).insertBefore('#for_prepend_purpose');
+									init();
+							});
 					});
-			});
+				});
 		});
+}
+
+// TODO
+function addComment(userName, commentText, card_id) {
+	var commentItem = '<li class="comment-container">' +
+			'							<div class="comment-content">' +
+			'								<img class="rounded-circle" style="float: left" width="40" height="40" src="http://style.anu.edu.au/_anu/4/images/placeholders/person.png"' +
+			'									alt="User avatar.">' +
+			'								<ul class="list-unstyled" style="margin-left: 50px;">' +
+			'									<li>' +
+			'										<a style="font-size:13px;">' + userName + '<span style="color: darkgray"></span></a>' +
+			'									</li>' +
+			'									<li>' +
+			'										<h3 style="font-size:13px;">' + commentText +
+			'										</h3>' +
+			'									</li>';
+	$(".comments-list").append(commentItem);
+
+	$.post("mrequest.php", {func_name: "add_comment", card_id: card_id, comment: commentText})
+	.done(function(data) {
+		// refresh
+	});
+}
+
+// TODO
+function fetchComment(card_id) {
+	$.post("mrequest.php", {func_name: "fetch_comments", card_id: card_id})
+	.done(function(data) {
+		let dataparsed = JSON.parse(data);
+		dataparsed.forEach(function(element) {
+				var userName = "User";
+				var commentText = element.comment;
+				var commentItem = '<li class="comment-container">' +
+				'							<div class="comment-content">' +
+				'								<img class="rounded-circle" style="float: left" width="40" height="40" src="http://style.anu.edu.au/_anu/4/images/placeholders/person.png"' +
+				'									alt="User avatar.">' +
+				'								<ul class="list-unstyled" style="margin-left: 50px;">' +
+				'									<li>' +
+				'										<a style="font-size:13px;">' + userName + '<span style="color: darkgray"></span></a>' +
+				'									</li>' +
+				'									<li>' +
+				'										<h3 style="font-size:13px;">' + commentText +
+				'										</h3>' +
+				'									</li>';
+				$(".comments-list").append(commentItem);
 		});
-		
-	
+	});
 }

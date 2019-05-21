@@ -1,11 +1,15 @@
 <?php
 include("config.php");
+include 'ChromePhp.php';
 session_start();
 
 $project_id = $_SESSION['project_id'];
 $func_name = mysqli_real_escape_string($db, $_POST['func_name']);
 
 switch($func_name) {
+		case 'user_cred':
+				user_cred($db, $_SESSION['user_id']);
+				break;
     case 'remove_privilage':
         remove_privilage($db, $_POST['user_id']);
         break;
@@ -24,6 +28,12 @@ switch($func_name) {
 		case 'remove_lists':
         remove_lists($db, $_POST['list_id'], $_SESSION['board_id']);
         break;
+		case 'add_comment':
+				add_comment($db, $_SESSION['user_id'], $project_id, $_POST['card_id'], $_POST['commandText']);
+				break;
+		case 'fetch_comments':
+				fetch_comments($db, $_SESSION['user_id'], $project_id, $_POST['card_id']);
+				break;
 		case 'create_archive':
 				create_archive($db);
 				break;
@@ -58,6 +68,14 @@ switch($func_name) {
         echo "-1";
 }
 
+function user_cred($db, $user_id) {
+	$sql = "SELECT name FROM User WHERE user_id='$user_id'"; 
+	$result = mysqli_query($db, $sql);
+	$value = mysqli_fetch_object($result);
+	$name = $value->name;
+	echo json_encode($name);
+}
+
 function remove_privilage($db, $user_id) {
 	  $del_query = "DELETE FROM PrivilegedUser WHERE user_id='$user_id'";  
 		$insert_query = "INSERT INTO StandardUser (user_id) VALUES ('$user_id')";
@@ -79,8 +97,8 @@ function fetch_lists($db, $board_id) {
 	
 	while($row=mysqli_fetch_assoc($result)) {
         $dbdata[]=$row;
-    }
-    echo json_encode($dbdata);
+  }
+  echo json_encode($dbdata);
 }
 
 function fetch_cards($db, $list_id, $user_id) {
@@ -102,6 +120,37 @@ function add_lists($db, $title, $board_id) {
 function remove_lists($db, $list_id, $board_id) {
 	$del_query = "DELETE FROM Lists WHERE list_id='$list_id' AND board_id='$board_id'";  
 	mysqli_query($db, $del_query);
+}
+
+// TODO
+function add_comment($db, $user_id, $project_id, $card_id, $comment) {
+//	$insert_actions = "INSERT INTO Actions (user_id, project_id, card_id) VALUES ('$user_id', '$project_id', '$card_id')";
+//	mysqli_query($db, $insert_actions);
+//	
+//	$sql = "SELECT item_id FROM Actions WHERE user_id='$user_id' AND project_id='$project_id' AND card_id='$card_id'";
+//	$result = mysqli_query($db, $sql);
+//	$value = mysqli_fetch_assoc($result);
+//	$item_id = $value->item_id;
+//	
+//	$insert_comment = "INSERT INTO Comment (item_id, comment) VALUES ('$item_id', '$comment')";
+//	mysqli_query($db, $insert_comment);
+}
+
+// TODO
+function fetch_comments($db, $user_id, $project_id, $card_id) {
+//	$dbdata = array();
+//	$sql = "SELECT item_id FROM Actions WHERE user_id='$user_id' AND project_id='$project_id' AND card_id='$card_id'";
+//	$result = mysqli_query($db, $sql);
+//	$value = mysqli_fetch_assoc($result);
+//	$item_id = $value->item_id;
+//	
+//	$fetch_comments = "SELECT comment FROM Comment WHERE item_id='$item_id'";
+//	$results = mysqli_query($db, $fetch_comments);
+//	
+//	while($row=mysqli_fetch_assoc($results)) {
+//        $dbdata[]=$row;
+//  }
+//  echo json_encode($dbdata);
 }
 
 function create_archive($db) {
@@ -126,28 +175,37 @@ function is_archived($db, $user_id, $project_id, $card_id) {
 	}
 }
 
+// TODO
 function archive_card($db, $user_id, $project_id, $card_id) {
-	$insert_actions = "INSERT INTO Actions (user_id, project_id, card_id) VALUES ('$user_id', '$project_id', '$card_id')";
-	mysqli_query($db, $insert_actions);
-	
-	$sql = "SELECT item_id FROM Actions WHERE user_id='$user_id' AND project_id='$project_id' AND card_id='$card_id'";
-	$result = mysqli_query($db, $sql);
-	$value = mysqli_fetch_assoc($result);
-	$item_id =$value['item_id'];
-	$insert_archive = "INSERT INTO Archive (archived_date, item_id) VALUES (CURDATE(), '$item_id')";
-	mysqli_query($db, $insert_archive);
-	change_card_list($db, 1, $card_id, $user_id);
+//	$insert_actions = "INSERT INTO Actions (user_id, project_id, card_id) VALUES ('$user_id', '$project_id', '$card_id')";
+//	mysqli_query($db, $insert_actions);
+//	
+//	$sql = "SELECT item_id FROM Actions WHERE user_id='$user_id' AND project_id='$project_id' AND card_id='$card_id'";
+//	$result = mysqli_query($db, $sql);
+//	$value = mysqli_fetch_assoc($result);
+//	$item_id = $value->item_id;
+//	
+//	$sql2 = "SELECT list_id FROM Cards WHERE user_id='$user_id' AND project_id='$project_id' AND card_id='$card_id'";
+//	$result = mysqli_query($db, $sql2);
+//	$value = mysqli_fetch_assoc($result);
+//	$list_id = $value->list_id;
+//	
+//	ChromePhp::log($item_id, $list_id);
+//	$insert_archive = "INSERT INTO Archive (archived_date, archive_id, item_id) VALUES (CURDATE(), '$list_id', '$item_id')";
+//	mysqli_query($db, $insert_archive);
+//	change_card_list($db, 1, $card_id, $user_id);
 }
 
+// TODO
 function unarchive_card($db, $user_id, $project_id, $card_id) {
-	$sql = "SELECT archive_id FROM Archive NATURAL JOIN Actions WHERE user_id='$user_id' AND project_id='$project_id' AND card_id='$card_id'";
-	$result = mysqli_query($db, $sql);
-	$value = mysqli_fetch_assoc($result);
-	$archive_id =$value['archive_id'];
-	
-	$delete_actions = "DELETE FROM Actions WHERE user_id='$user_id' AND project_id='$project_id' AND card_id='$card_id'";
-	mysqli_query($db, $delete_actions);
-	change_card_list($db, $archive_id, $card_id, $user_id);
+//	$sql = "SELECT archive_id FROM Archive NATURAL JOIN Actions WHERE user_id='$user_id' AND project_id='$project_id' AND card_id='$card_id'";
+//	$result = mysqli_query($db, $sql);
+//	$value = mysqli_fetch_assoc($result);
+//	$archive_id = $value->archive_id;
+//	
+//	$delete_actions = "DELETE FROM Actions WHERE user_id='$user_id' AND project_id='$project_id' AND card_id='$card_id'";
+//	mysqli_query($db, $delete_actions);
+//	change_card_list($db, $archive_id, $card_id, $user_id);
 }
 
 function change_card_list($db, $list_id, $card_id, $user_id) {

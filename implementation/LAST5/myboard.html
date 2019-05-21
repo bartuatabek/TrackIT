@@ -16,18 +16,21 @@
 
 	<body>
 		<header class="fixed-top">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-					<a class="navbar-brand" href="#">Track-IT</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-							<div class="navbar-nav">
-									<a class="nav-item nav-link active" href="#">Home</a>
-									<a class="nav-item nav-link" href="#">Features</a>
-									<a class="nav-item nav-link" href="#">Pricing</a>
-							</div>
-					</div>
+			<nav class=" shadow-sm navbar navbar-expand-lg navbar-light bg-light">
+				<a class="navbar-brand" href="#">Track-IT</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+						<div class="  navbar-nav">
+								<a class="nav-item nav-link active" href="#">Projects</a>
+								<a class="nav-item nav-link" href="#">Project Information</a>
+								<a class="nav-item nav-link" href="#">Issue</a>
+								<a class="nav-item nav-link" href="#">Release</a>
+								<a class="nav-item nav-link" href="#">Users</a>
+								<a class="nav-item nav-link order-3" href="#">Logout</a>
+						</div>
+				</div>
 			</nav>
 		</header>
 		
@@ -35,7 +38,7 @@
 			<div class="row justify-content-end align-items-center profile-row">
 				<div class="col-1.2 profile-col">
 					<div class="profile-name">
-						<p class="text-right"><strong>John Smith</strong></p>
+						<p class="text-right"><strong id="username">John Smith</strong></p>
 					</div>
 				</div>
 				<div class="col-1 profile-col">
@@ -96,20 +99,30 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="cpastetitle"></h5>
-						<span class="badge badge-pill badge-primary">Primary</span>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<div class="modal-body">
+						<span class="badge badge-pill badge-primary">Primary</span>
 						<h6 data-toggle="collapse" data-target="#pparticipants">Assigned Users <i class="fas fa-caret-down"></i></h6>
 						<div id="pparticipants" class="collapse overflow-auto" style="height: auto;max-height: 100px;overflow-x: hidden;">
 						</div>
 						<p id="cpastedescription"><b>Description:</b> </p>
 					</div>
+					
+					<div class="modal-footer d-inline">
+						<ul class="comments-list list-unstyled">
+						</ul>
+						<p>Comment:</p>
+						<div class="border border-dark w-100" style="height: 120px;">
+							<textarea id="comment-content" class="w-100 h-100" style="padding: 10px"></textarea>
+						</div>
+				</div>
+					
 					<div class="modal-footer">
 							<input name="ass_user" type="text" class="form-control" id="assUserText" placeholder="User ID">
-							<button id="assuserbut" type="submit" class="btn btn-primary">Assign User</button>
+							<button id="assuserbut" type="submit" class="btn btn-primary">Assign</button>
 							<button id="archivebut" type="submit" class="btn btn-warning">Archive</button>
 							<button id="cdelete" type="submit" class="btn btn-danger">Delete</button>
 					</div>

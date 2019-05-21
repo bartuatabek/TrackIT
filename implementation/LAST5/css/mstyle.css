@@ -145,3 +145,10 @@ li > #cards > li:hover {
 	cursor: pointer !important;
 	color : #244234;
 }
+
+.comment-container{
+	border: 1px solid;
+	padding: 12px;
+	margin-bottom: 12px;
+	text-decoration: none;
+}
