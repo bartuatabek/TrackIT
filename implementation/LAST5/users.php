@@ -15,34 +15,26 @@
 
 	<body>
 		<header class="fixed-top">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<nav class=" shadow-sm navbar navbar-expand-lg navbar-light bg-light">
 				<a class="navbar-brand" href="#">Track-IT</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-						<div class="navbar-nav">
-								<a class="nav-item nav-link active" href="#">Home</a>
-								<a class="nav-item nav-link" href="#">Features</a>
-								<a class="nav-item nav-link" href="#">Pricing</a>
+						<div class="  navbar-nav">
+								<a class="nav-item nav-link active" href="#">Projects</a>
+								<a class="nav-item nav-link" href="#">Project Information</a>
+								<a class="nav-item nav-link" href="#">Issue</a>
+								<a class="nav-item nav-link" href="#">Releases</a>
+								<a class="nav-item nav-link" href="#">Reports</a>
+								<a class="nav-item nav-link" href="#">Users</a>
+								<a class="nav-item nav-link order-3" href="#">Logout</a>
 						</div>
 				</div>
 			</nav>
 		</header>
 		
 		<div class="profile-container">
-			<div class="row justify-content-end align-items-center profile-row">
-				<div class="col-1.2 profile-col">
-					<div class="profile-name">
-						<p class="text-right"><strong>John Smith</strong></p>
-					</div>
-				</div>
-				<div class="col-1 profile-col">
-					<figure>
-						<img src="http://style.anu.edu.au/_anu/4/images/placeholders/person.png" width="50px" height="50px">
-					</figure>
-				</div>
-			</div>
 		</div>
 		
 		<div class="container">
