@@ -52,7 +52,7 @@
 				<?php
 						include 'config.php';
 						$sql = "SELECT user_id, name, username FROM PrivilegedUser NATURAL JOIN User";
-						$result = mysqli_query($connection, $sql);
+						$result = mysqli_query($db, $sql);
 
 						if($result-> num_rows > 0) {
 								while($row = $result-> fetch_assoc()) {
@@ -75,7 +75,7 @@
 						}
 				
 						$sql = "SELECT user_id, name, username FROM StandardUser NATURAL JOIN User";
-						$result = mysqli_query($connection, $sql);
+						$result = mysqli_query($db, $sql);
 
 						if($result-> num_rows > 0) {
 								while($row = $result-> fetch_assoc()) {
@@ -95,7 +95,7 @@
 				<?php
 								}
 						}
-						$connection-> close();
+						$db-> close();
 				?>
 			</div>
 		</div>
