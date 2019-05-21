@@ -364,7 +364,6 @@ $(document).ready(function(){
 
             });
 
-
         });
 
     }else if(window.location.pathname == "/board.html"){

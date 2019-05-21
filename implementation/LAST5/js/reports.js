@@ -20,4 +20,33 @@ $(document).ready(function() {
     
     
     
+                $.post( "reports.php", { func_name: "create_pviewd"})
+                .done(function( data ) {
+            });
+    
+                $.post( "reports.php", { func_name: "fetch_pview"})
+                .done(function( data ) {
+                    let dataparsed = JSON.parse(data);
+                    console.log(dataparsed);
+
+                dataparsed.forEach(function(element) {
+                    document.getElementById("pviewtb").innerHTML+='<tr>'+
+                                                          '<th scope="row">'+element.project_id+'</th>'+
+                                                          '<td>'+element.name+'</td>'+
+                                                          '<td>'+element.start_date+'</td>'+
+                                                          '<td>'+element.end_date+'</td>'+
+                                                          '<td>'+element.day_passed+'</td>'+
+                                                          '<td>'+element.day_remaning+'</td>'+
+                                                          '</tr>';
+                });
+                    
+            });
+    
+    
+    
+    
+    
+    
+    
+    
 });

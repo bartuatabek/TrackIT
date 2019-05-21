@@ -18,10 +18,56 @@ switch($func_name)
         case 'fetch_greatestProject':
         fetch_greatestProject($db);
         break;
+        
+        case 'create_pviewd':
+        create_pviewd($db);
+        break;
+        
+        case 'fetch_pview':
+        fetch_pview($db);
+        break;
+
 
     default:
         echo "-1";
 }
+
+
+
+
+function fetch_pview($db)
+{
+    
+    $dbdata = array();
+
+    $sql=mysqli_query
+        ($db,
+         "
+            select * from pviewf;
+		"
+        );
+
+    while($row=mysqli_fetch_assoc($sql))
+    {
+        $dbdata[]=$row;
+    }
+    echo json_encode($dbdata);
+    
+}
+
+
+
+
+function create_pviewd($db)
+{
+    $sql=mysqli_query
+        ($db,
+         "
+            CREATE VIEW pviewf AS SELECT project_id,name, start_date, end_date, DATEDIFF(CURDATE(), start_date) as day_passed, DATEDIFF(end_date,CURDATE()) as day_remaning FROM Project;
+		"
+        );
+}
+
 
 
 
