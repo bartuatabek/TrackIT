@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Track-It</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<link rel="shortcut icon" type="image/png" href="./images/logo.png"/>
+		<link rel="stylesheet" href="lib/jquery-ui.css" />
+		<link rel="stylesheet" href="css/mstyle.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+		<script type="text/javascript" src="lib/jquery.min.js"></script>
+		<script type="text/javascript" src="lib/jquery-ui.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	</head>
+
+	<body>
+		<header class="fixed-top">
+			<nav class=" shadow-sm navbar navbar-expand-lg navbar-light bg-light">
+				<a class="navbar-brand" href="#">Track-IT</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+						<div class="  navbar-nav">
+								<a class="nav-item nav-link active" href="#">Projects</a>
+								<a class="nav-item nav-link" href="#">Project Information</a>
+								<a class="nav-item nav-link" href="#">Issue</a>
+								<a class="nav-item nav-link" href="#">Releases</a>
+								<a class="nav-item nav-link" href="#">Reports</a>
+								<a class="nav-item nav-link" href="#">Users</a>
+								<a class="nav-item nav-link order-3" href="#">Logout</a>
+						</div>
+				</div>
+			</nav>
+		</header>
+		
+		<div class="profile-container">
+			<div class="row justify-content-end align-items-center profile-row">
+				<div class="col-1.2 profile-col">
+					<div class="profile-name">
+						<p class="text-right"><strong id="username">John Smith</strong></p>
+					</div>
+				</div>
+				<div class="col-1 profile-col">
+					<figure>
+						<img src="http://style.anu.edu.au/_anu/4/images/placeholders/person.png" width="50px" height="50px">
+					</figure>
+				</div>
+			</div>
+		</div>
+		
+		<div class="title-container"> 
+			<h2>My Board</h2>
+		</div>
+		
+		<div class="Workflow-container">
+				<ul class="ul-parent" id="contains_workspaces">	
+			
+				<li class="li-parent before-list create_workspace" id="for_prepend_purpose"> 
+					<!--Add Workflows-->
+					<p></p><center>
+					<input type="text" placeholder="Add a list" id="add_workflow" class="create_workspace_textElement"/>
+					<i class="fas fa-plus-circle"></i>
+					<p></p>
+				</li>	
+			</ul>
+		</div>
+
+		<script type="text/javascript" src="js/myboard.js"></script>
+		
+		<!--Create Modal -->
+		<div class="modal fade" id="createCardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+
+						<h5 class="modal-title" id="exampleModalLongTitle">Add Card</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+							<form id="createForm">
+									 <input name="card_name" type="text" class="form-control" id="cname" placeholder="Card name">
+									<textarea name="card_description" type="text" class="form-control" id="cdescription" placeholder="Card description"></textarea>
+								</form>
+
+					</div>
+					<div class="modal-footer">
+						<button id="cadd" type="submit" class="btn btn-primary">Add</button>
+					</div>
+				</div>
+			</div>
+		</div>
+        
+		<!--Show Modal -->
+		<div class="modal fade" id="showCardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="cpastetitle"></h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<span class="badge badge-pill badge-primary">Primary</span>
+						<h6 data-toggle="collapse" data-target="#pparticipants">Assigned Users <i class="fas fa-caret-down"></i></h6>
+						<div id="pparticipants" class="collapse overflow-auto" style="height: auto;max-height: 100px;overflow-x: hidden;">
+						</div>
+						<p id="cpastedescription"><b>Description:</b> </p>
+					</div>
+					
+					<div class="modal-footer d-inline">
+						<ul class="comments-list list-unstyled">
+						</ul>
+						<p>Comment:</p>
+						<div class="border border-dark w-100" style="height: 120px;">
+							<textarea id="comment-content" class="w-100 h-100" style="padding: 10px"></textarea>
+						</div>
+				</div>
+					
+					<div class="modal-footer">
+							<input name="ass_user" type="text" class="form-control" id="assUserText" placeholder="User ID">
+							<button id="assuserbut" type="submit" class="btn btn-primary">Assign</button>
+							<button id="archivebut" type="submit" class="btn btn-warning">Archive</button>
+							<button id="cdelete" type="submit" class="btn btn-danger">Delete</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+<html>
+
+
