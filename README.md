@@ -4,7 +4,7 @@ CS 353 Database Systems Course Project
 
 **Instructor:**  Özgür Ulusoy
 
-**Section/ Group:** Section 3 - Group 30 
+**Section/ Group:** Section 3 - Group 30
 
 **Members:**
 -   [Bartu Atabek](https://github.com/bartuatabek)
@@ -17,9 +17,9 @@ Project Tracker is a system to track software development project. There will be
 
 
 ## Reports
- - [Proposal Report](https://github.com/utgoer/Katamino/blob/master/doc/2F.Analysis.Iteration1.2018.10.21.pdf)
+ - [Project Proposal Report](https://github.com/utgoer/Katamino/blob/master/doc/2F.Analysis.Iteration1.2018.10.21.pdf)
  - [Design Report](https://github.com/utgoer/Katamino/blob/master/doc/2F.Design.Iteration1.2018.11.08.pdf)
- - [Implementation Report]()
+ - [Final Report](https://track-it.cf/assets/reports/Final%20Report%20-%20CS353.pdf)
 
 ## Progress
 
